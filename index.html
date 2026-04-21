@@ -2,39 +2,89 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Presupuestador de Viajes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuestador Mensual de Traslados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="card">
-        <h2>Presupuesto de Traslado</h2>
-        <div class="input-group">
-            <label>Distancia (kms)</label>
-            <input type="number" id="kms" step="0.1">
+        <h2>Presupuesto Mensual</h2>
+        
+        <div class="row">
+            <div class="input-group">
+                <label>Mes</label>
+                <select id="mes">
+                    <option value="0">Enero</option>
+                    <option value="1">Febrero</option>
+                    <option value="2">Marzo</option>
+                    <option value="3" selected>Abril</option>
+                    <option value="4">Mayo</option>
+                    <option value="5">Junio</option>
+                    <option value="6">Julio</option>
+                    <option value="7">Agosto</option>
+                    <option value="8">Septiembre</option>
+                    <option value="9">Octubre</option>
+                    <option value="10">Noviembre</option>
+                    <option value="11">Diciembre</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Año</label>
+                <input type="number" id="anio" value="2026">
+            </div>
         </div>
+
         <div class="input-group">
-            <label>Tiempo (minutos)</label>
-            <input type="number" id="minutos">
+            <label>Vehículo (Consumo Fijo)</label>
+            <select id="auto">
+                <option value="12" selected>Chevrolet Celta (12 km/l)</option>
+                <option value="10">Renault 9 (10 km/l)</option>
+            </select>
         </div>
+
+        <div class="row">
+            <div class="input-group">
+                <label>Viajes / Día</label>
+                <input type="number" id="viajesDia" value="2">
+            </div>
+            <div class="input-group">
+                <label>Distancia (Km)</label>
+                <input type="number" id="kms" value="4.2" step="0.1">
+            </div>
+        </div>
+
         <div class="input-group">
-            <label>Precio Nafta ($/L)</label>
-            <input type="number" id="nafta">
+            <label>Tiempo por viaje (Minutos)</label>
+            <input type="number" id="minutos" value="20">
         </div>
-        <div class="input-group">
-            <label>Consumo (kms/L)</label>
-            <input type="number" id="consumo">
+
+        <div class="row">
+            <div class="input-group">
+                <label>Nafta ($/L)</label>
+                <input type="number" id="nafta" value="2200">
+            </div>
+            <div class="input-group">
+                <label>Valor Hora ($)</label>
+                <input type="number" id="valorHora" value="10000">
+            </div>
         </div>
-        <div class="input-group">
-            <label>Tu valor hora ($)</label>
-            <input type="number" id="valorHora">
-        </div>
-        <button onclick="calcular()">Calcular Presupuesto</button>
+
+        <button onclick="calcular()">Calcular Total Mensual</button>
 
         <div id="resultado" class="hidden">
-            <p>Combustible: <span id="resNafta"></span></p>
-            <p>Tu tiempo: <span id="resTiempo"></span></p>
+            <div class="info-row">
+                <span>Días hábiles:</span>
+                <span id="resDias">-</span>
+            </div>
+            <div class="info-row">
+                <span>Viajes totales:</span>
+                <span id="resViajesTotales">-</span>
+            </div>
             <hr>
-            <p class="total">Total: <span id="resTotal"></span></p>
+            <div class="result-item total">
+                <span>TOTAL MES:</span>
+                <span id="resTotal">$0</span>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
