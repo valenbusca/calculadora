@@ -1,110 +1,83 @@
-/* Reset total para eliminar espacios blancos rebeldes */
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f3f4f6;
-    font-family: 'Segoe UI', system-ui, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Calculador de Traslados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h2>Presupuesto Mensual <span id="currentYear"></span></h2>
+        </div>
+        
+        <div class="main-content">
+            <div class="panel">
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Mes</label>
+                        <select id="mes" onchange="calcular()">
+                            <option value="0">Enero</option><option value="1">Febrero</option>
+                            <option value="2">Marzo</option><option value="3" selected>Abril</option>
+                            <option value="4">Mayo</option><option value="5">Junio</option>
+                            <option value="6">Julio</option><option value="7">Agosto</option>
+                            <option value="8">Septiembre</option><option value="9">Octubre</option>
+                            <option value="10">Noviembre</option><option value="11">Diciembre</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Vehículo</label>
+                        <select id="auto" onchange="calcular()">
+                            <option value="12" selected>Celta (12 km/l)</option>
+                            <option value="10">Renault 9 (10 km/l)</option>
+                        </select>
+                    </div>
+                </div>
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Kms por viaje</label>
+                        <input type="number" id="kms" value="4.2" step="0.1" oninput="calcular()">
+                    </div>
+                    <div class="input-group">
+                        <label>Minutos viaje</label>
+                        <input type="number" id="minutos" value="20" oninput="calcular()">
+                    </div>
+                    <div class="input-group">
+                        <label>Viajes x día</label>
+                        <input type="number" id="viajesDia" value="1" oninput="calcular()">
+                    </div>
+                </div>
 
-/* El contenedor principal */
-.dashboard {
-    background: white;
-    width: 850px;
-    max-width: 95%; /* En laptop deja un margen, en celu lo quitamos abajo */
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    box-sizing: border-box;
-}
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Precio Nafta ($)</label>
+                        <input type="number" id="nafta" value="2200" oninput="calcular()">
+                    </div>
+                    <div class="input-group">
+                        <label>Valor Hora ($)</label>
+                        <input type="number" id="valorHora" value="10000" oninput="calcular()">
+                    </div>
+                </div>
+            </div>
 
-.header h2 {
-    margin: 0 0 20px 0;
-    color: #1f2937;
-    border-bottom: 2px solid #f3f4f6;
-    padding-bottom: 15px;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-.main-content {
-    display: flex;
-    gap: 20px;
-}
-
-.panel { flex: 2; }
-
-.results-panel {
-    flex: 1;
-    background: #f9fafb;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.input-row { display: flex; gap: 10px; margin-bottom: 15px; }
-.input-group { flex: 1; }
-
-label { 
-    display: block; 
-    font-size: 0.7rem; 
-    font-weight: bold; 
-    color: #6b7280; 
-    margin-bottom: 4px; 
-    text-transform: uppercase; 
-}
-
-input, select { 
-    width: 100%; 
-    padding: 10px; 
-    border: 1px solid #d1d5db; 
-    border-radius: 6px; 
-    box-sizing: border-box; 
-    font-size: 16px;
-}
-
-.stat { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
-.total-box { margin-top: 15px; border-top: 2px dashed #cbd5e1; padding-top: 15px; text-align: center; }
-.total-amount { display: block; font-size: 2.2rem; font-weight: 800; color: #2563eb; }
-
-/* --- AQUÍ ESTÁ EL CAMBIO PARA TU CELULAR --- */
-@media (max-width: 600px) {
-    body {
-        background-color: white; /* Fondo blanco total */
-        display: block; /* Permite que el contenido fluya hacia abajo */
-    }
-
-    .dashboard {
-        width: 100% !important; /* Fuerza el ancho total */
-        max-width: 100% !important;
-        margin: 0 !important;
-        padding: 20px !important;
-        border-radius: 0 !important; /* Quita bordes redondeados */
-        box-shadow: none !important; /* Quita la sombra */
-        min-height: 100vh;
-    }
-
-    .main-content {
-        flex-direction: column;
-    }
-
-    .input-row {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .results-panel {
-        margin-top: 20px;
-        background-color: #f0f7ff;
-    }
-}
+            <div class="results-panel">
+                <div class="stat">
+                    <span>Días Hábiles:</span>
+                    <span id="resDias">-</span>
+                </div>
+                <div class="stat">
+                    <span>Total Viajes:</span>
+                    <span id="resViajesTotales">-</span>
+                </div>
+                <div class="total-box">
+                    <span class="label">TOTAL A COBRAR</span>
+                    <span class="total-amount" id="resTotal">$0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
