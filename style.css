@@ -1,45 +1,43 @@
-/* --- CONFIGURACIÓN BASE --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f3f4f6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: #f3f4f6; /* Fondo gris para laptops */
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
 }
 
-/* --- CONTENEDOR PRINCIPAL --- */
 .dashboard {
     background: white;
     width: 850px;
-    max-width: 100%;
+    max-width: 95%;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     box-sizing: border-box;
-    transition: all 0.3s ease;
 }
 
 .header h2 {
-    margin-top: 0;
-    color: #1f2937;
+    margin: 0 0 20px 0;
+    color: #111827;
     border-bottom: 2px solid #f3f4f6;
     padding-bottom: 15px;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     text-align: center;
 }
 
-/* --- LAYOUT HORIZONTAL (LAPTOP) --- */
 .main-content {
     display: flex;
     gap: 25px;
 }
 
-.panel { 
-    flex: 2; 
-}
+.panel { flex: 2; }
 
 .results-panel {
     flex: 1;
@@ -52,25 +50,16 @@ body {
     justify-content: center;
 }
 
-/* --- FILAS DE INPUTS --- */
-.input-row { 
-    display: flex; 
-    gap: 15px; 
-    margin-bottom: 15px; 
-}
-
-.input-group { 
-    flex: 1; 
-}
+.input-row { display: flex; gap: 15px; margin-bottom: 15px; }
+.input-group { flex: 1; }
 
 label { 
     display: block; 
-    font-size: 0.75rem; 
-    font-weight: bold; 
+    font-size: 0.7rem; 
+    font-weight: 700; 
     color: #6b7280; 
     margin-bottom: 5px; 
     text-transform: uppercase; 
-    letter-spacing: 0.5px;
 }
 
 input, select { 
@@ -79,30 +68,12 @@ input, select {
     border: 1px solid #d1d5db; 
     border-radius: 8px; 
     box-sizing: border-box; 
-    font-size: 16px; /* Evita zoom automático en móviles */
-    background: #ffffff;
-    color: #1f2937;
+    font-size: 16px;
+    background-color: #fff;
 }
 
-input:focus, select:focus {
-    outline: none;
-    border-color: #2563eb;
-    ring: 2px solid #bfdbfe;
-}
-
-/* --- ESTADÍSTICAS Y RESULTADO --- */
-.stat { 
-    display: flex; 
-    justify-content: space-between; 
-    margin-bottom: 12px; 
-    font-size: 1rem; 
-    color: #4b5563;
-}
-
-.stat span:last-child {
-    font-weight: bold;
-    color: #111827;
-}
+.stat { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 1rem; }
+.stat span:last-child { font-weight: bold; }
 
 .total-box { 
     margin-top: 15px; 
@@ -116,47 +87,38 @@ input:focus, select:focus {
     font-size: 2.5rem; 
     font-weight: 800; 
     color: #2563eb; 
-    line-height: 1;
 }
 
-/* --- MODO RESPONSIVE (CELULARES) --- */
+/* RESPONSIVE PARA CELULARES */
 @media (max-width: 768px) {
     body {
-        background-color: white; /* Quitamos el fondo gris para que sea todo una pieza */
-        align-items: flex-start; /* Empieza desde arriba */
+        background-color: white;
+        display: block;
     }
 
     .dashboard {
-        box-shadow: none; /* Eliminamos la sombra que crea el efecto de "recuadro" */
-        padding: 20px;
-        border-radius: 0; /* Bordes rectos para llenar la pantalla */
-        min-height: 100vh; /* Se estira para ocupar todo el largo del celu (16:9) */
-        width: 100%;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        min-height: 100vh;
     }
 
     .main-content {
-        flex-direction: column; /* Apila inputs arriba y resultados abajo */
+        flex-direction: column;
         gap: 20px;
     }
 
     .input-row {
-        flex-direction: column; /* Cada input ocupa su propia línea */
+        flex-direction: column;
         gap: 15px;
     }
 
     .results-panel {
-        margin-top: 10px;
+        background-color: #f0f7ff;
         border: none;
-        background: #f0f7ff; /* Azul suave para resaltar la zona de cobro */
-        border-radius: 12px;
-    }
-
-    .total-amount {
-        font-size: 2.8rem; /* Súper legible en el teléfono */
-    }
-    
-    .header h2 {
-        font-size: 1.5rem;
-        padding-bottom: 20px;
+        margin-bottom: 30px;
     }
 }
