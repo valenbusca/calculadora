@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Presupuestador de Viajes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <h2>Presupuesto de Traslado</h2>
+        <div class="input-group">
+            <label>Distancia (kms)</label>
+            <input type="number" id="kms" step="0.1">
+        </div>
+        <div class="input-group">
+            <label>Tiempo (minutos)</label>
+            <input type="number" id="minutos">
+        </div>
+        <div class="input-group">
+            <label>Precio Nafta ($/L)</label>
+            <input type="number" id="nafta">
+        </div>
+        <div class="input-group">
+            <label>Consumo (kms/L)</label>
+            <input type="number" id="consumo">
+        </div>
+        <div class="input-group">
+            <label>Tu valor hora ($)</label>
+            <input type="number" id="valorHora">
+        </div>
+        <button onclick="calcular()">Calcular Presupuesto</button>
+
+        <div id="resultado" class="hidden">
+            <p>Combustible: <span id="resNafta"></span></p>
+            <p>Tu tiempo: <span id="resTiempo"></span></p>
+            <hr>
+            <p class="total">Total: <span id="resTotal"></span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
