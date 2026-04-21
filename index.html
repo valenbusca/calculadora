@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculador Profesional de Traslados</title>
+    <title>Calculador de Traslados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
             <div class="panel">
                 <div class="input-row">
                     <div class="input-group">
-                        <label>Mes a Liquidar</label>
+                        <label>Mes</label>
                         <select id="mes" onchange="calcular()">
                             <option value="0">Enero</option><option value="1">Febrero</option>
                             <option value="2">Marzo</option><option value="3" selected>Abril</option>
@@ -64,12 +64,12 @@
 
             <div class="results-panel">
                 <div class="stat">
-                    <span class="label">Días Hábiles</span>
-                    <span class="value" id="resDias">-</span>
+                    <span>Días Hábiles:</span>
+                    <span id="resDias">-</span>
                 </div>
                 <div class="stat">
-                    <span class="label">Total Viajes</span>
-                    <span class="value" id="resViajesTotales">-</span>
+                    <span>Total Viajes:</span>
+                    <span id="resViajesTotales">-</span>
                 </div>
                 <div class="total-box">
                     <span class="label">TOTAL A COBRAR</span>
