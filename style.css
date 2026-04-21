@@ -1,55 +1,45 @@
+/* --- CONFIGURACIÓN BASE --- */
 body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: #f3f4f6;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: #f3f4f6; /* Fondo gris para laptops */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 10px; /* Margen para que no toque los bordes en el celu */
+    padding: 0;
 }
 
+/* --- CONTENEDOR PRINCIPAL --- */
 .dashboard {
     background: white;
+    width: 850px;
+    max-width: 100%;
+    padding: 30px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    width: 850px;
-    max-width: 100%; /* Se adapta al ancho de pantalla chica */
-    padding: 20px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 .header h2 {
     margin-top: 0;
     color: #1f2937;
     border-bottom: 2px solid #f3f4f6;
-    padding-bottom: 10px;
-    font-size: 1.2rem;
+    padding-bottom: 15px;
+    font-size: 1.3rem;
     text-align: center;
 }
 
+/* --- LAYOUT HORIZONTAL (LAPTOP) --- */
 .main-content {
     display: flex;
     gap: 25px;
 }
 
-/* --- ESTO HACE LA MAGIA RESPONSIVE --- */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column; /* En el celu, pone los resultados abajo de los inputs */
-    }
-    
-    .dashboard {
-        width: 100%;
-        padding: 15px;
-    }
-
-    .input-row {
-        flex-direction: column; /* Los inputs también se apilan */
-        gap: 10px;
-    }
+.panel { 
+    flex: 2; 
 }
-
-.panel { flex: 2; }
 
 .results-panel {
     flex: 1;
@@ -62,40 +52,111 @@ body {
     justify-content: center;
 }
 
-.input-row { display: flex; gap: 15px; margin-bottom: 15px; }
+/* --- FILAS DE INPUTS --- */
+.input-row { 
+    display: flex; 
+    gap: 15px; 
+    margin-bottom: 15px; 
+}
 
-.input-group { flex: 1; }
+.input-group { 
+    flex: 1; 
+}
 
 label { 
     display: block; 
-    font-size: 0.7rem; 
+    font-size: 0.75rem; 
     font-weight: bold; 
     color: #6b7280; 
     margin-bottom: 5px; 
     text-transform: uppercase; 
+    letter-spacing: 0.5px;
 }
 
 input, select { 
     width: 100%; 
-    padding: 12px; /* Más grande para que sea fácil tocar con el dedo */
+    padding: 12px; 
     border: 1px solid #d1d5db; 
-    border-radius: 6px; 
+    border-radius: 8px; 
     box-sizing: border-box; 
-    font-size: 16px; /* Evita que el iPhone haga zoom automático al clickear */
+    font-size: 16px; /* Evita zoom automático en móviles */
+    background: #ffffff;
+    color: #1f2937;
 }
 
-.stat { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
+input:focus, select:focus {
+    outline: none;
+    border-color: #2563eb;
+    ring: 2px solid #bfdbfe;
+}
+
+/* --- ESTADÍSTICAS Y RESULTADO --- */
+.stat { 
+    display: flex; 
+    justify-content: space-between; 
+    margin-bottom: 12px; 
+    font-size: 1rem; 
+    color: #4b5563;
+}
+
+.stat span:last-child {
+    font-weight: bold;
+    color: #111827;
+}
 
 .total-box { 
     margin-top: 15px; 
-    border-top: 2px dashed #ccc; 
-    padding-top: 15px; 
+    border-top: 2px dashed #cbd5e1; 
+    padding-top: 20px; 
     text-align: center; 
 }
 
 .total-amount { 
     display: block; 
-    font-size: 2.2rem; 
+    font-size: 2.5rem; 
     font-weight: 800; 
     color: #2563eb; 
+    line-height: 1;
+}
+
+/* --- MODO RESPONSIVE (CELULARES) --- */
+@media (max-width: 768px) {
+    body {
+        background-color: white; /* Quitamos el fondo gris para que sea todo una pieza */
+        align-items: flex-start; /* Empieza desde arriba */
+    }
+
+    .dashboard {
+        box-shadow: none; /* Eliminamos la sombra que crea el efecto de "recuadro" */
+        padding: 20px;
+        border-radius: 0; /* Bordes rectos para llenar la pantalla */
+        min-height: 100vh; /* Se estira para ocupar todo el largo del celu (16:9) */
+        width: 100%;
+    }
+
+    .main-content {
+        flex-direction: column; /* Apila inputs arriba y resultados abajo */
+        gap: 20px;
+    }
+
+    .input-row {
+        flex-direction: column; /* Cada input ocupa su propia línea */
+        gap: 15px;
+    }
+
+    .results-panel {
+        margin-top: 10px;
+        border: none;
+        background: #f0f7ff; /* Azul suave para resaltar la zona de cobro */
+        border-radius: 12px;
+    }
+
+    .total-amount {
+        font-size: 2.8rem; /* Súper legible en el teléfono */
+    }
+    
+    .header h2 {
+        font-size: 1.5rem;
+        padding-bottom: 20px;
+    }
 }
