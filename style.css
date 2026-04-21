@@ -6,27 +6,51 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 10px; /* Margen para que no toque los bordes en el celu */
 }
+
 .dashboard {
     background: white;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     width: 850px;
-    max-width: 95vw;
-    padding: 25px;
+    max-width: 100%; /* Se adapta al ancho de pantalla chica */
+    padding: 20px;
 }
+
 .header h2 {
     margin-top: 0;
     color: #1f2937;
     border-bottom: 2px solid #f3f4f6;
     padding-bottom: 10px;
     font-size: 1.2rem;
+    text-align: center;
 }
+
 .main-content {
     display: flex;
     gap: 25px;
 }
+
+/* --- ESTO HACE LA MAGIA RESPONSIVE --- */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column; /* En el celu, pone los resultados abajo de los inputs */
+    }
+    
+    .dashboard {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .input-row {
+        flex-direction: column; /* Los inputs también se apilan */
+        gap: 10px;
+    }
+}
+
 .panel { flex: 2; }
+
 .results-panel {
     flex: 1;
     background: #f9fafb;
@@ -37,10 +61,41 @@ body {
     flex-direction: column;
     justify-content: center;
 }
+
 .input-row { display: flex; gap: 15px; margin-bottom: 15px; }
+
 .input-group { flex: 1; }
-label { display: block; font-size: 0.7rem; font-weight: bold; color: #6b7280; margin-bottom: 5px; text-transform: uppercase; }
-input, select { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box; }
+
+label { 
+    display: block; 
+    font-size: 0.7rem; 
+    font-weight: bold; 
+    color: #6b7280; 
+    margin-bottom: 5px; 
+    text-transform: uppercase; 
+}
+
+input, select { 
+    width: 100%; 
+    padding: 12px; /* Más grande para que sea fácil tocar con el dedo */
+    border: 1px solid #d1d5db; 
+    border-radius: 6px; 
+    box-sizing: border-box; 
+    font-size: 16px; /* Evita que el iPhone haga zoom automático al clickear */
+}
+
 .stat { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; }
-.total-box { margin-top: 15px; border-top: 2px dashed #ccc; padding-top: 15px; text-align: center; }
-.total-amount { display: block; font-size: 1.8rem; font-weight: 800; color: #2563eb; }
+
+.total-box { 
+    margin-top: 15px; 
+    border-top: 2px dashed #ccc; 
+    padding-top: 15px; 
+    text-align: center; 
+}
+
+.total-amount { 
+    display: block; 
+    font-size: 2.2rem; 
+    font-weight: 800; 
+    color: #2563eb; 
+}
